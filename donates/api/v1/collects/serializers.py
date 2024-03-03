@@ -6,7 +6,7 @@ from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
 
 from collects.models import Collect, Occasion
-from api.v1.paynents.serializers import PaymentSerializer
+from api.v1.payments.serializers import PaymentSerializer
 
 
 class CollectListSerializer(ModelSerializer):

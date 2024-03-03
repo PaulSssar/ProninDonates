@@ -41,7 +41,6 @@ class CollectViewSet(ModelViewSet):
         return response
 
     def retrieve(self, request, *args, **kwargs):
-        cache.delete()
         collect_id = self.kwargs.get('pk')
         cache_retrieve = cache.get(settings.CACHE_RETRIEVE + collect_id)
         response = super().retrieve(request, *args, **kwargs)
