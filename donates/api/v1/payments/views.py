@@ -1,11 +1,12 @@
+from django.conf import settings
 from django.core.cache import cache
-from djoser.conf import settings
 from rest_framework.generics import CreateAPIView
-from .serializers import PaymentSerializer
-from payments.models import Payment
+
 from api.utils import cache_delete
+from payments.models import Payment
 
 from ...tasks import send_email_to
+from .serializers import PaymentSerializer
 
 
 class PaymentViewSet(CreateAPIView):
@@ -18,7 +19,7 @@ class PaymentViewSet(CreateAPIView):
     def perform_create(self, serializer):
         pk = self.kwargs.get('id')
         cache_delete()
-        cache.delete(settings.CACHE_RETRIEVE + pk)
+        cache.delete(settings.CACHE_RETRIEVE + str(pk))
         send_email_to.delay('Оплата',
                             f'Оплата прошла успешно!',
                             'example@yandex',

@@ -1,9 +1,10 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .schemas import schema_view
 from api.v1.collects.views import CollectViewSet
 from api.v1.payments.views import PaymentViewSet
+
+from .schemas import schema_view
 
 router_v1 = DefaultRouter()
 router_v1.register('collect', CollectViewSet)

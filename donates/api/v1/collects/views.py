@@ -2,11 +2,13 @@ from django.conf import settings
 from django.core.cache import cache
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet
-from .serializers import CollectSerializer, CollectListSerializer
-from collects.models import Collect
+
 from api.permissions import IsOwnerOrReadOnly
-from api.utils import cache_delete
 from api.tasks import send_email_to
+from api.utils import cache_delete
+from collects.models import Collect
+
+from .serializers import CollectListSerializer, CollectSerializer
 
 
 class CollectViewSet(ModelViewSet):
@@ -39,6 +41,7 @@ class CollectViewSet(ModelViewSet):
         return response
 
     def retrieve(self, request, *args, **kwargs):
+        cache.delete()
         collect_id = self.kwargs.get('pk')
         cache_retrieve = cache.get(settings.CACHE_RETRIEVE + collect_id)
         response = super().retrieve(request, *args, **kwargs)

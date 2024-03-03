@@ -2,11 +2,12 @@ from datetime import datetime
 from random import randint
 
 import factory
-
-from faker import Faker
-from .models import Payment
 from django.contrib.auth import get_user_model
+from faker import Faker
+
 from collects.models import Collect
+
+from .models import Payment
 
 faker = Faker()
 User = get_user_model()

@@ -2,9 +2,9 @@ from datetime import datetime
 from random import randint
 
 import factory
-
-from faker import Faker
 from django.contrib.auth import get_user_model
+from faker import Faker
+
 from .models import Collect, Occasion
 
 fake = Faker()

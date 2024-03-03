@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.core.cache import cache
-from django.db.models import Sum, Count
+from django.db.models import Count, Sum
 from rest_framework.fields import SerializerMethodField
 from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
-from collects.models import Occasion, Collect
+
+from collects.models import Collect, Occasion
 
 
 class CollectListSerializer(ModelSerializer):
