@@ -6,6 +6,7 @@ from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
 
 from collects.models import Collect, Occasion
+from api.v1.paynents.serializers import PaymentSerializer
 
 
 class CollectListSerializer(ModelSerializer):
@@ -20,6 +21,7 @@ class CollectSerializer(ModelSerializer):
     )
     sum_payments = SerializerMethodField()
     count_of_payments = SerializerMethodField()
+    payments = PaymentSerializer(many=True)
 
     class Meta:
         model = Collect
